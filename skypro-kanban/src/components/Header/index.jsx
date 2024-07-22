@@ -1,42 +1,61 @@
-export const Header = () => {
+import { useState } from "react";
+import * as S from "./header.styled.js";
+import { Container } from "../../globalStyle.stiled.js";
+
+// eslint-disable-next-line react/prop-types
+export const Header = ({ addCard, theme, setTheme }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleModalUser = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const onTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
+
   return (
-    <header className="header">
-      <div className="container">
-        <div className="header__block">
-          <div className="header__logo _show _light">
+    <S.Header>
+      <Container>
+        <S.HeaderBlock>
+          <S.HeaderLogo className={`${theme === "light" ? "_light" : "_dark"}`}>
             <a href="" target="_self">
-              <img src="public/images/logo.png" alt="logo" />
+              <img src="/logo.png" alt="logo" />
             </a>
-          </div>
-          <div className="header__logo _dark">
+          </S.HeaderLogo>
+          <S.HeaderLogo className={`${theme === "light" ? "_dark" : "_light"}`}>
             <a href="" target="_self">
-              <img src="public/images/logo_dark.png" alt="logo" />
+              <img src="/logo_dark.png" alt="logo" />
             </a>
-          </div>
-          <nav className="header__nav">
-            <button className="header__btn-main-new _hover01" id="btnMainNew">
-              <a href="#popNewCard">Создать новую задачу</a>
-            </button>
-            <a href="#user-set-target" className="header__user _hover02">
-              Ivan Ivanov
-            </a>
-            <div
-              className="header__pop-user-set pop-user-set"
-              id="user-set-target">
-              {/* <a href="">x</a>  */}
-              <p className="pop-user-set__name">Ivan Ivanov</p>
-              <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
-              <div className="pop-user-set__theme">
-                <p>Темная тема</p>
-                <input type="checkbox" className="checkbox" name="checkbox" />
-              </div>
-              <button type="button" className="_hover03">
-                <a href="#popExit">Выйти</a>
-              </button>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </header>
+          </S.HeaderLogo>
+          <S.HeaderNav>
+            <S.HeaderBtnMainNew onClick={addCard} id="btnMainNew">
+              <a>Создать новую задачу</a>
+            </S.HeaderBtnMainNew>
+            <S.HeaderUser onClick={toggleModalUser}>Ivan Ivanov</S.HeaderUser>
+            {isOpen && (
+              <S.PopUserSet>
+                <S.HeaderPopUserSet id="user-set-target">
+                  {/* <a href="">x</a>  */}
+                  <S.PopUserSetName>Ivan Ivanov</S.PopUserSetName>
+                  <S.PopUserSetMail>ivan.ivanov@gmail.com</S.PopUserSetMail>
+                  <S.PopUserSetThem>
+                    <p>Темная тема</p>
+                    <input
+                      checked={theme === "dark"}
+                      onClick={onTheme}
+                      type="checkbox"
+                      name="checkbox"
+                    />
+                  </S.PopUserSetThem>
+                  <button type="button">
+                    <a href="#popExit">Выйти</a>
+                  </button>
+                </S.HeaderPopUserSet>
+              </S.PopUserSet>
+            )}
+          </S.HeaderNav>
+        </S.HeaderBlock>
+      </Container>
+    </S.Header>
   );
 };

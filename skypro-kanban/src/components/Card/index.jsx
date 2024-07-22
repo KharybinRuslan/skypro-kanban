@@ -1,30 +1,33 @@
 import Calendar from "../Icons/calendar";
-import { CardCategory } from "./cardCategory";
+import * as S from "./card.styled";
 
-export const Card = ({ Category, TaskName, TaskCreationDate }) => {
+// eslint-disable-next-line react/prop-types
+export const Card = ({ topic, title, date }) => {
   return (
-    <div className="cards__item">
-      <div className="cards__card card">
-        <div className="card__group">
-          <CardCategory Category={Category} />
+    <S.CardsItem>
+      <S.CardsCard>
+        <S.CardsGroup>
+          <S.CardTheme $topicColor = {topic}>
+            <p>{topic}</p>
+          </S.CardTheme>
           <a href="#popBrowse" target="_self">
-            <div className="card__btn">
+            <S.CardsBtn>
               <div></div>
               <div></div>
               <div></div>
-            </div>
+            </S.CardsBtn>
           </a>
-        </div>
-        <div className="card__content">
+        </S.CardsGroup>
+        <S.CardContent>
           <a href="" target="_blank">
-            <h3 className="card__title"> {TaskName} </h3>
+            <h3> {title} </h3>
           </a>
-          <div className="card__date">
+          <S.CardDate>
             <Calendar />
-            <p>{TaskCreationDate}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+            <p>{date}</p>
+          </S.CardDate>
+        </S.CardContent>
+      </S.CardsCard>
+    </S.CardsItem>
   );
 };
