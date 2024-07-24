@@ -1,30 +1,34 @@
+import { Link } from "react-router-dom";
 import Calendar from "../Icons/calendar";
-import { CardCategory } from "./cardCategory";
+import * as S from "./card.styled";
 
-export const Card = ({ Category, TaskName, TaskCreationDate }) => {
+// eslint-disable-next-line react/prop-types
+export const Card = ({ topic, title, date, id }) => {
   return (
-    <div className="cards__item">
-      <div className="cards__card card">
-        <div className="card__group">
-          <CardCategory Category={Category} />
-          <a href="#popBrowse" target="_self">
-            <div className="card__btn">
+    <S.CardsItem>
+      <S.CardsCard>
+        <S.CardsGroup>
+          <S.CardTheme $topicColor = {topic}>
+            <p>{topic}</p>
+          </S.CardTheme>
+          <Link to={`/card/${id}`} target="_self">
+            <S.CardsBtn>
               <div></div>
               <div></div>
               <div></div>
-            </div>
-          </a>
-        </div>
-        <div className="card__content">
+            </S.CardsBtn>
+          </Link>
+        </S.CardsGroup>
+        <S.CardContent>
           <a href="" target="_blank">
-            <h3 className="card__title"> {TaskName} </h3>
+            <h3> {title} </h3>
           </a>
-          <div className="card__date">
+          <S.CardDate>
             <Calendar />
-            <p>{TaskCreationDate}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+            <p>{date}</p>
+          </S.CardDate>
+        </S.CardContent>
+      </S.CardsCard>
+    </S.CardsItem>
   );
 };
