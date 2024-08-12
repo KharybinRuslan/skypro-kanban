@@ -1,8 +1,8 @@
 export const routes = {
-    main: "/",
-    login: "/login",
-    register: "/register",
-    exit: "/exit",
-    notFound: "*",
-    card: "/card/:id",
-  }
+  main: "/",
+  login: "/login",
+  register: "/register",
+  exit: "/exit",
+  notFound: "*",
+  card: "/card/:id",
+}
