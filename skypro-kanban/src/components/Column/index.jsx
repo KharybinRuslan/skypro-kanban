@@ -1,28 +1,27 @@
+/* eslint-disable react/prop-types */
 import { Card } from "../Card";
+import { Cards, ColumnTitle, MainColumn } from "./column.styled";
 
-export const Column = ({ title }) => {
+export const Column = ({ title, cardList }) => {
   return (
-    <div className="main__column column">
-      <div className="column__title">
+    <MainColumn className="column">
+      <ColumnTitle>
         <p>{title}</p>
-      </div>
-      <div className="cards">
-        <Card
-          Category="Web Design"
-          TaskName="Название задачи"
-          TaskCreationDate="06.02.24"
-        />
-        <Card
-          Category="Research"
-          TaskName="Название задачи"
-          TaskCreationDate="06.02.24"
-        />
-        <Card
-          Category="Copywriting"
-          TaskName="Название задачи"
-          TaskCreationDate="06.02.24"
-        />
-      </div>
-    </div>
+      </ColumnTitle>
+
+      <Cards>
+        {cardList.map((card) => {
+          return (
+            <Card
+              key={card._id}
+              id={card._id}
+              topic={card.topic}
+              title={card.title}
+              date={card.date}
+            />
+          );
+        })}
+      </Cards>
+    </MainColumn>
   );
 };
