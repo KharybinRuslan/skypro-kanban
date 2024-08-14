@@ -23,12 +23,12 @@ export const Header = ({ theme, setTheme }) => {
         <S.HeaderBlock>
           <S.HeaderLogo className={`${theme === "light" ? "_light" : "_dark"}`}>
             <Link to={routes.main} target="_self">
-              <img src="/logo.png" alt="logo" />
+              <img src="/images/logo.png" alt="logo" />
             </Link>
           </S.HeaderLogo>
           <S.HeaderLogo className={`${theme === "light" ? "_dark" : "_light"}`}>
             <Link to={routes.main} target="_self">
-              <img src="/logo_dark.png" alt="logo" />
+              <img src="/images/logo_dark.png" alt="logo" />
             </Link>
           </S.HeaderLogo>
           <S.HeaderNav>
