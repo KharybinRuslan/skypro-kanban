@@ -1,23 +1,22 @@
+import "./App.css";
 
-import { PopUser } from './components/PopUser'
-import { PopNewCard } from './components/PopNewCard'
-import { PopBrowse } from './components/PopBrowse'
-import { Header } from './components/Header'
-import { Main } from './components/Main'
-import './App.css'
+import { useState } from "react";
+
+import { GlobalStyle } from "./globalStyle.stiled";
+import { ThemeProvider } from "styled-components";
+import { dark, light } from "./Theme";
+import { AppRoutes } from "./router/AppRoutes";
 
 
 function App() {
+  const [theme, setTheme] = useState("light");
 
   return (
-    <div className="wrapper">
-	< PopUser />
-	< PopNewCard />
-	< PopBrowse />
-	< Header /> 	
-	< Main />
-    </div>
-  )
+    <ThemeProvider theme={theme === "light" ? light : dark}>
+      <GlobalStyle />
+      <AppRoutes theme={theme} setTheme={setTheme} />
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;

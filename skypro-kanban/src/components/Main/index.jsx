@@ -1,19 +1,25 @@
-import { Column } from "../Column/index.jsx";
 
-export const Main = () => {
+import { statusList } from "../../../data.js";
+import { Container } from "../../globalStyle.stiled.js";
+import { Column } from "../Column/index.jsx";
+import * as S from "./main.styled.js";
+
+export const Main = ({ cards }) => {
   return (
-    <main className="main">
-      <div className="container">
-        <div className="main__block">
-          <div className="main__content">
-            <Column title="Без заголовка" />
-            <Column title="Нужно сделать" />
-            <Column title="В работе" />
-            <Column title="Тестирование" />
-            <Column title="Готово" />
-          </div>
-        </div>
-      </div>
-    </main>
+    <S.Main>
+      <Container>
+        <S.MainBlock>
+          <S.MainContent>
+            {statusList.map((status) => (
+              <Column
+                key={status}
+                title={status}
+                cardList={cards.filter((card) => card.status === status)}
+              />
+            ))}
+          </S.MainContent>
+        </S.MainBlock>
+      </Container>
+    </S.Main>
   );
 };
